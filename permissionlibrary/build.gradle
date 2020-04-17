@@ -1,18 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.novoda.bintray-release'// 添加bintray插件
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
-
 
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -36,12 +30,23 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9.1'
+    }
+}
+
 publish {
-    userOrg = 'mj-94'// Binary用户名
+    userOrg = 'mj-94'
     repoName = 'permissionx'
     groupId = 'com.mj.permissionlibrary'
     artifactId = 'permissionx'
     publishVersion = '1.0.0'
     desc = 'Make Android runtime permission request easy.'
-    website = 'https://gitee.com/MJ0801/PermissionX'
+    website = 'https://github.com/moujiedev/PermissionX'
 }
